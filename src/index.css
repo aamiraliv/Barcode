@@ -1,0 +1,54 @@
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  @apply font-Poppins
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.nav-titles{
+  @apply hidden font-Poppins font-light md:flex text-[15px] cursor-pointer hover:text-black/50
+}
+.menu-nav-titles{
+  @apply  font-Poppins text-white font-normal text-[15px] cursor-pointer hover:text-black/50
+}
+@font-face{
+  font-family: 'Custom';
+  src: url('./fonts/Cubic.ttf') format('truetype');
+}
+.error{
+  @apply rounded-lg bg-white w-full text-center font-medium  text-[12px] p-2 text-red-600 flex justify-center items-center gap-2
+}
+p{
+  @apply font-Poppins 
+}
+th{
+  @apply font-Poppins text-[12px] text-gray-600 font-normal text-start py-4 border-b
+}
+tr{
+  @apply hover:bg-gray-100
+}
+td{
+  @apply font-Poppins text-[12px] text-black font-normal text-start py-4
+}
+
+.toast-custom {
+  font-size: 12px;
+  padding: 15px;
+  min-height: 40px;
+  max-width: 250px;
+}
+
+.toast-custom .Toastify__toast-body {
+  margin: 0;
+  padding: 0;
+}
+
+.toast-custom .Toastify__close-button {
+  font-size: 10px; 
+}

@@ -1,0 +1,6 @@
+.inputStyle{
+   @apply px-[15px] py-2 outline-none flex-grow w-full bg-transparent border-b text-white placeholder:text-white ;
+}
+.main-container{
+   @apply bg-[url(../assets/images/background.jpg)] h-screen w-full bg-no-repeat bg-cover bg-center;
+}
