@@ -30,24 +30,33 @@ const Login = () => {
       const data = Response.data;
       const user = data.find(
         (user) =>
-          (detail.name === user.email || user.name === detail.name) &&
-          user.password === detail.password
+          detail.name === user.email && user.password === detail.password
       );
-      if (user) {
-        localStorage.setItem("user", JSON.stringify(user));
-        // alert("login successful");
-        toast.success("logged in successfully", {
-          onClose: () => {
-            navigate("/", { replace: true });
-            window.location.reload();
-          },
-        });
-        // navigate("/",{replace:true});
-        // window.location.reload()
-        console.log(user);
-      } else {
-        // alert("Error! Invalid email or password");
-        toast.error("Error! Invalid email or password")
+      if (!user) {
+        toast.error("Invalid credentials");
+        return;
+      }
+      if (user.isBlocked === true) {
+        toast.error("You are blocked");
+      } else if (user) {
+        if (user.role === "admin") {
+          localStorage.setItem("user", JSON.stringify(user));
+          toast.success("Welcome Admin!", {
+            onClose: () => {
+              navigate("/admin", { replace: true });
+              window.location.reload();
+              // window.location.href = "/admin";
+            },
+          });
+        } else {
+          localStorage.setItem("user", JSON.stringify(user));
+          toast.success("logged in successfully", {
+            onClose: () => {
+              navigate("/", { replace: true });
+              window.location.reload();
+            },
+          });
+        }
       }
     } catch (error) {
       console.log(error);
@@ -63,7 +72,7 @@ const Login = () => {
             <input
               className="inputStyle"
               type="text"
-              placeholder="userName or Email"
+              placeholder="Email"
               onChange={handleInput}
               value={detail.name}
               name="name"

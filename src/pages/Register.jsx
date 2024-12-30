@@ -63,8 +63,9 @@ const Register = () => {
     setInput({
       ...input,
       [name]: value,
-      id: data.length + 1,
+      id: String(data.length + 1),
       role: "user",
+      isBlocked: false,
     });
   };
 

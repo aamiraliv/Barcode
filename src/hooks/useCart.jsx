@@ -7,12 +7,11 @@ const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
-  console.log(user);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     setUser(storedUser);
-
+    
     if (storedUser) {
       api
         .get(`/users/${storedUser.id}`)
@@ -47,24 +46,6 @@ export const CartProvider = ({ children }) => {
 
     return () => clearTimeout(timeout);
   }, [cart, user]);
-
-  // useEffect(() => {
-  //   // if (user) {
-  //     // localStorage.setItem("cart", JSON.stringify(cart));
-  //     if( !user ) return
-  //     api
-  //       .patch(`/users/${user.id}`, {
-  //         userCart: cart || [],
-  //       })
-  //       .then((response) => {
-  //         console.log("Successfully updated cart on server:", response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Failed to update cart on server:", error);
-  //       });
-  //       localStorage.setItem("cart", JSON.stringify(cart));
-  //   // }
-  // }, [cart, user]);
 
   const addToCart = (product, quantity = 1) => {
     if (!user) {
@@ -130,5 +111,5 @@ export const CartProvider = ({ children }) => {
   );
 };
 
-// Hook to use Cart Context
+
 export const useCart = () => useContext(CartContext);

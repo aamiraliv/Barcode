@@ -23,7 +23,7 @@ const ProductDetails = () => {
     <div>
       <div key={data.id} className="flex items-center justify-center p-10">
         <div className="flex gap-4 flex-col justify-between xl:grid xl:grid-cols-2">
-          <div className="h-[300px] w-[300px] xl:h-[500px] xl:w-[500px] rounded-lg border-2 border-red-500/50">
+          <div className="p-4 h-[300px] w-[300px] xl:h-[500px] xl:w-[500px] rounded-lg border-2 border-red-500/50">
             <img
               src={data.imageURL}
               alt={data.name}
@@ -32,7 +32,7 @@ const ProductDetails = () => {
           </div>
           <div className="flex flex-col font-semibold text-center gap-4 xl:gap-0 xl:justify-between">
             <h2 className="font-bold text-xl xl:text-4xl font-Poppins xl:text-center xl:p-4 xl:bg- xl:rounded-lg">{data.name}</h2>
-            <p className="text-[14px] font-normal p-4 min-h-[250px] bg-slate-300/50 rounded-md xl:text-start">product description</p>
+            <p className="text-[14px] font-normal p-4 min-h-[250px] bg-slate-300/50 rounded-md xl:text-start">{data.discription}</p>
             <p className="xl:text-start text-stone-700 xl:pl-2 xl:border-l-4 xl:border-l-red-400">₹ {data.price}</p>
             <p className="xl:text-start text-stone-700">Quantity: 1</p>
             <button

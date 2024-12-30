@@ -25,11 +25,11 @@ const Profile = () => {
         .get(`/orders`)
         .then((response) => {
           const userOrders = response.data.filter(
-            (order) => order.userId === userdata.id
+            (order) => Number(order.userId) === Number(userdata.id)
           );
           setOrders(userOrders);
         })
-        .catch((error) => console.error("Failed to fetch orders:", error));
+        .catch((error) => console.log("Failed to fetch orders:", error));
     }
   }, [userdata]);
 
@@ -41,8 +41,6 @@ const Profile = () => {
         window.location.reload();
       },
     });
-    // navigate("/");
-    // window.location.reload();
   };
 
   return (
@@ -89,8 +87,8 @@ const Profile = () => {
             <th className=""></th>
             <th className="text-center">Product</th>
             <th className="text-center">Status</th>
-            <th>qty</th>
-            <th>price</th>
+            <th className="text-center">qty</th>
+            <th className="text-center">price</th>
           </tr>
           {orders.map((order) =>
             order.items.map((item) => (
@@ -101,13 +99,23 @@ const Profile = () => {
                 <td className="text-[12px] text-gray-700 p-2 text-center">
                   {item.name}
                 </td>
-                <td className="text-[12px] text-green-600 p-2 text-center">
-                  Delivered
+                <td
+                  className={`text-[12px] ${
+                    order.Status === "Pending"
+                      ? "text-blue-500"
+                      : order.Status === "Shipped"
+                      ? "text-yellow-500"
+                      : order.Status === "Delivered"
+                      ? "text-green-500"
+                      : ""
+                  } p-2 text-center`}
+                >
+                  {order.Status}
                 </td>
-                <td className="text-[12px] text-gray-700 p-2">
+                <td className="text-[12px] text-gray-700 p-2 text-center">
                   {item.quantity}
                 </td>
-                <td className="text-[12px] text-gray-700 p-2">
+                <td className="text-[12px] text-gray-700 p-2 text-center">
                   ₹ {item.price}
                 </td>
               </tr>

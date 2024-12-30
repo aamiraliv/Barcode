@@ -28,6 +28,7 @@ const Navbar = () => {
 
   const handleuser = () => {
     navaigate("/user");
+    setIsOpen(false);
   };
 
   const { cart } = useCart();
@@ -47,22 +48,7 @@ const Navbar = () => {
     if (query.trim()) {
       navaigate(`/products/All?search=${query}`);
     } else {
-      <div role="alert" className="alert alert-warning">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 shrink-0 stroke-current"
-          fill="none"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-          />
-        </svg>
-        <span>Warning: Enter a search Term</span>
-      </div>;
+      navaigate("/products/All");
     }
   };
 
@@ -106,7 +92,7 @@ const Navbar = () => {
           )} */}
 
           <div
-            className={`transition-all duration-[1s]  ${
+            className={`transition-all duration-1000 ease-in-out ${
               isSearchOpen ? " w-[100px] md:w-[200px]" : "w-0"
             } overflow-hidden`}
           >
@@ -153,12 +139,15 @@ const Navbar = () => {
               isOpen ? "block" : "hidden"
             } mt-2 border backdrop-blur-md bg-black/40  md:hidden overflow-hidden`}
           >
-            <Link to={"/products/All"}>
-              <div className="flex gap-2 items-center">
+            
+              <div  onClick={()=>{
+                navaigate("/products/All")
+                setIsOpen(false)
+                }} className="flex gap-2 items-center">
                 <ShoppingCartIcon className="h-4 text-white" />
                 <p className="menu-nav-titles">Shop</p>
               </div>
-            </Link>
+            
             <div className="flex gap-2 items-center">
               <ExclamationCircleIcon className="h-4 text-white" />
               <p className="menu-nav-titles">About</p>

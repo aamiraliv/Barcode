@@ -23,6 +23,7 @@ const Checkout = () => {
   }, []);
 
   const handleClearCart = async () => {
+    const currentMonth = new Date().toLocaleString('default', { month: 'short' });
     try {
       const newObj = {
         userId: userdata.id,
@@ -32,6 +33,7 @@ const Checkout = () => {
           0
         ),
         orderDate: new Date().toISOString(),
+        month: currentMonth,
       };
 
       const orderResponse = await api.post("/orders", newObj);

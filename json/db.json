@@ -4,17 +4,19 @@
       "id": "1",
       "category": "Laptops",
       "name": "MacBook Pro 16-inch",
-      "price": 2499,
+      "price": "2000",
       "imageURL": "https://icreststore.in/wp-content/uploads/2023/01/618gNoohxL._SL1500_.jpg",
-      "sales": 1204
+      "sales": 1207,
+      "discription": "Chip. Apple M1 Pro chip. 10-core CPU with 8 performance cores and 2 efficiency cores. 16-core GPU. 16-core Neural Engine. 200GB/s memory bandwidth."
     },
     {
       "id": "2",
       "category": "Laptops",
       "name": "Dell XPS 13",
-      "price": 1399,
+      "price": "1500",
       "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
-      "sales": 953
+      "sales": 957,
+      "discription": "dell\n\n"
     },
     {
       "id": "3",
@@ -22,7 +24,7 @@
       "name": "HP Spectre x360",
       "price": 1699,
       "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTn_HYVPkhmY35BM7OQgrk0brlZ0vWtoOhnYYyezqsd9S4lU-minLXWXAwfzeT0k_tzl4Dj0XPOAC7-A-RIaXofmuDVM16V&usqp=CAE",
-      "sales": 802
+      "sales": 807
     },
     {
       "id": "4",
@@ -30,7 +32,7 @@
       "name": "Asus ROG Zephyrus",
       "price": 1799,
       "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
-      "sales": 702
+      "sales": 703
     },
     {
       "id": "5",
@@ -79,14 +81,6 @@
       "price": 299,
       "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRwANb-BtWEVt0fxY1NMM9YVtp2e7bWP9S3Y8G0ATC0LfNGLWfFwaXVCk5p1MkEJXtaFmpEh7v_GyrJvNaNOWdzOM_QUjHIwojtNY9_s6p4fjaBhB4nhWyP&usqp=CAE",
       "sales": 600
-    },
-    {
-      "id": "11",
-      "category": "Speakers",
-      "name": "JBL Flip 6",
-      "price": 129,
-      "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
-      "sales": 1804
     },
     {
       "id": "12",
@@ -268,12 +262,20 @@
       "sales": 210
     },
     {
-      "id": "35",
-      "name": "Xiaomi 13 Pro",
-      "price": 749,
-      "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRlfFiGITje6ikOaSgvOxX7PaIrpgRjnD7usHZXvMREJKPxfsg-ehcFB7RLpCNfe7kOVYHz5wtmlrznWK5E8CdRzqWJJiiYdQZyrm8LBNCoLGJC7BxxA6nqvA&usqp=CAE",
-      "category": "mobiles",
-      "sales": 190
+      "id": "23e7",
+      "name": "BVLGARI",
+      "price": "20000",
+      "discription": "Merging two of the most iconic symbols of Bvlgari design, the Serpenti Tubogas watch coils the sinuosity of the snake with the contemporary soul of tubogas.",
+      "imageURL": "https://img.tatacliq.com/images/i21//658Wx734H/MP000000024078107_658Wx734H_202412211905321.jpeg",
+      "category": "Watches"
+    },
+    {
+      "id": "b870",
+      "name": "Nothing Phone (2a) 5G",
+      "price": "21850",
+      "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+      "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+      "category": "mobiles"
     }
   ],
   "users": [
@@ -290,6 +292,7 @@
       "email": "amir@gmail.com",
       "password": "12345678",
       "role": "user",
+      "isBlocked": false,
       "userCart": [
         {
           "id": "6",
@@ -306,15 +309,17 @@
       "id": "3",
       "name": "asdf",
       "password": "asdfsd",
-      "email": "asdf",
-      "role": "user"
+      "email": "asdf@gmail.com",
+      "role": "user",
+      "isBlocked": false
     },
     {
       "id": "4",
       "name": "awsf",
       "password": "asfdsasdfsadfsdfsd",
       "email": "amiralivillan@gmail.com",
-      "role": "user"
+      "role": "user",
+      "isBlocked": false
     },
     {
       "id": "5",
@@ -322,6 +327,7 @@
       "password": "12345678",
       "email": "rinshad@gmail.com",
       "role": "user",
+      "isBlocked": true,
       "userCart": [
         {
           "id": "7",
@@ -348,21 +354,161 @@
       "name": "asd",
       "password": "23456789uytr",
       "email": "kuttiamr11@gmail.com",
-      "role": "user"
+      "role": "user",
+      "isBlocked": false,
+      "userCart": [
+        {
+          "id": "16",
+          "category": "Gamings",
+          "name": "PlayStation 5",
+          "price": 499,
+          "imageURL": "https://m.media-amazon.com/images/I/41LrbwhFnoL.jpg",
+          "sales": 2001,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        }
+      ]
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "shamil",
       "password": "12345678",
       "email": "shamil@gmail.com",
-      "role": "user"
+      "role": "user",
+      "isBlocked": false,
+      "userCart": [
+        {
+          "id": "1",
+          "category": "Laptops",
+          "name": "MacBook Pro 16-inch",
+          "price": 2499,
+          "imageURL": "https://icreststore.in/wp-content/uploads/2023/01/618gNoohxL._SL1500_.jpg",
+          "sales": 1207,
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": 1399,
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 953,
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "category": "Laptops",
+          "name": "HP Spectre x360",
+          "price": 1699,
+          "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTn_HYVPkhmY35BM7OQgrk0brlZ0vWtoOhnYYyezqsd9S4lU-minLXWXAwfzeT0k_tzl4Dj0XPOAC7-A-RIaXofmuDVM16V&usqp=CAE",
+          "sales": 806,
+          "quantity": 1
+        },
+        {
+          "id": "6",
+          "category": "Watches",
+          "name": "Apple Watch Series 8",
+          "price": 399,
+          "imageURL": "https://m.media-amazon.com/images/I/41of44hRBqL._SX300_SY300_QL70_FMwebp_.jpg",
+          "sales": 1505,
+          "quantity": 1
+        },
+        {
+          "id": "7",
+          "category": "Watches",
+          "name": "Samsung Galaxy Watch 5",
+          "price": 299,
+          "imageURL": "https://m.media-amazon.com/images/I/61Guilj8MEL._SX679_.jpg",
+          "sales": 1204,
+          "quantity": 1
+        },
+        {
+          "id": "8",
+          "category": "Watches",
+          "name": "Garmin Forerunner 955",
+          "price": 499,
+          "imageURL": "https://d2xamzlzrdbdbn.cloudfront.net/products/9c1eaa53-ae78-4d67-acaa-9325c475bad922291138.jpg",
+          "sales": 850,
+          "quantity": 1
+        }
+      ]
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "nishad",
       "password": "12345678",
       "email": "nishad@gmail.com",
-      "role": "user"
+      "role": "user",
+      "isBlocked": false
+    },
+    {
+      "id": "9",
+      "name": "rinshad",
+      "password": "12345678",
+      "email": "rinshad11@gmail.com",
+      "role": "user",
+      "isBlocked": false,
+      "userCart": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Maher",
+      "password": "Maher123",
+      "email": "maher@gmail.com",
+      "role": "user",
+      "isBlocked": false
+    },
+    {
+      "id": "11",
+      "name": "adil",
+      "password": "12345678",
+      "email": "adil@gmail.com",
+      "role": "user",
+      "isBlocked": false
+    },
+    {
+      "id": "12",
+      "name": "jaseem",
+      "password": "12345678",
+      "email": "jaseem@gmail.com",
+      "role": "user",
+      "isBlocked": false
     }
   ],
   "orders": [
@@ -381,7 +527,9 @@
         }
       ],
       "totalAmount": 2490,
-      "orderDate": "2024-12-18T16:25:32.084Z"
+      "orderDate": "2024-12-18T16:25:32.084Z",
+      "month": "Dec",
+      "Status": "Delivered"
     },
     {
       "id": "7cc6",
@@ -398,7 +546,9 @@
         }
       ],
       "totalAmount": 6271,
-      "orderDate": "2024-12-18T17:55:39.666Z"
+      "orderDate": "2024-12-18T17:55:39.666Z",
+      "month": "Jan",
+      "Status": "Pending"
     },
     {
       "id": "65d2",
@@ -424,7 +574,9 @@
         }
       ],
       "totalAmount": 298,
-      "orderDate": "2024-12-18T17:58:12.709Z"
+      "orderDate": "2024-12-18T17:58:12.709Z",
+      "month": "Feb",
+      "Status": "Delivered"
     },
     {
       "id": "899b",
@@ -459,7 +611,9 @@
         }
       ],
       "totalAmount": 15040,
-      "orderDate": "2024-12-18T19:29:00.394Z"
+      "orderDate": "2024-12-18T19:29:00.394Z",
+      "month": "Dec",
+      "Status": "Delivered"
     },
     {
       "id": "e338",
@@ -503,7 +657,9 @@
         }
       ],
       "totalAmount": 7396,
-      "orderDate": "2024-12-18T19:42:43.664Z"
+      "orderDate": "2024-12-18T19:42:43.664Z",
+      "month": "Dec",
+      "Status": "Pending"
     },
     {
       "id": "d14e",
@@ -520,7 +676,9 @@
         }
       ],
       "totalAmount": 499,
-      "orderDate": "2024-12-18T19:43:22.767Z"
+      "orderDate": "2024-12-18T19:43:22.767Z",
+      "month": "Dec",
+      "Status": "Delivered"
     },
     {
       "id": "b9e8",
@@ -564,7 +722,9 @@
         }
       ],
       "totalAmount": 6695,
-      "orderDate": "2024-12-18T19:47:51.996Z"
+      "orderDate": "2024-12-18T19:47:51.996Z",
+      "month": "Jan",
+      "Status": "Pending"
     },
     {
       "id": "c7b9",
@@ -608,11 +768,13 @@
         }
       ],
       "totalAmount": 2153,
-      "orderDate": "2024-12-19T04:05:32.027Z"
+      "orderDate": "2024-12-19T04:05:32.027Z",
+      "month": "Mar",
+      "Status": "Delivered"
     },
     {
       "id": "d0cb",
-      "userId": 8,
+      "userId": "8",
       "items": [
         {
           "id": "5",
@@ -643,7 +805,74 @@
         }
       ],
       "totalAmount": 2296,
-      "orderDate": "2024-12-19T06:46:02.024Z"
+      "orderDate": "2024-12-19T06:46:02.024Z",
+      "month": "Mar",
+      "Status": "Pending"
+    },
+    {
+      "id": "f232",
+      "userId": 9,
+      "items": [
+        {
+          "id": "1",
+          "category": "Laptops",
+          "name": "MacBook Pro 16-inch",
+          "price": 2499,
+          "imageURL": "https://icreststore.in/wp-content/uploads/2023/01/618gNoohxL._SL1500_.jpg",
+          "sales": 1204,
+          "quantity": 3
+        },
+        {
+          "id": "3",
+          "category": "Laptops",
+          "name": "HP Spectre x360",
+          "price": 1699,
+          "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTn_HYVPkhmY35BM7OQgrk0brlZ0vWtoOhnYYyezqsd9S4lU-minLXWXAwfzeT0k_tzl4Dj0XPOAC7-A-RIaXofmuDVM16V&usqp=CAE",
+          "sales": 802,
+          "quantity": 4
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 702,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 16092,
+      "orderDate": "2024-12-19T10:12:23.590Z",
+      "month": "Dec",
+      "Status": "Delivered"
+    },
+    {
+      "id": "bd52",
+      "userId": "9",
+      "items": [
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": 1399,
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 953,
+          "quantity": 4
+        },
+        {
+          "id": "3",
+          "category": "Laptops",
+          "name": "HP Spectre x360",
+          "price": 1699,
+          "imageURL": "https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTn_HYVPkhmY35BM7OQgrk0brlZ0vWtoOhnYYyezqsd9S4lU-minLXWXAwfzeT0k_tzl4Dj0XPOAC7-A-RIaXofmuDVM16V&usqp=CAE",
+          "sales": 806,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 7295,
+      "orderDate": "2024-12-20T09:06:51.393Z",
+      "month": "Feb",
+      "Status": "Shipped"
     }
   ],
   "randomImage": [
