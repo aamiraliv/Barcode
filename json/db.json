@@ -15,7 +15,7 @@
       "name": "Dell XPS 13",
       "price": "1500",
       "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
-      "sales": 957,
+      "sales": 958,
       "discription": "dell\n\n"
     },
     {
@@ -32,7 +32,7 @@
       "name": "Asus ROG Zephyrus",
       "price": 1799,
       "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
-      "sales": 703
+      "sales": 704
     },
     {
       "id": "5",
@@ -128,7 +128,7 @@
       "name": "Xbox Series X",
       "price": 499,
       "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
-      "sales": 1803
+      "sales": 1804
     },
     {
       "id": "18",
@@ -275,7 +275,8 @@
       "price": "21850",
       "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
       "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
-      "category": "mobiles"
+      "category": "mobiles",
+      "sales": 1
     }
   ],
   "users": [
@@ -284,7 +285,8 @@
       "name": "amir",
       "email": "amirali@gmail.com",
       "password": "87654321",
-      "role": "admin"
+      "role": "admin",
+      "isBlocked": false
     },
     {
       "id": "2",
@@ -482,6 +484,25 @@
           "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
           "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
           "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
           "quantity": 1
         }
       ]
@@ -873,6 +894,997 @@
       "orderDate": "2024-12-20T09:06:51.393Z",
       "month": "Feb",
       "Status": "Shipped"
+    },
+    {
+      "id": "b5f2",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:10.404Z",
+      "month": "Jan"
+    },
+    {
+      "id": "0a64",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:11.791Z",
+      "month": "Jan"
+    },
+    {
+      "id": "d2be",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:12.421Z",
+      "month": "Jan",
+      "Status": "Shipped"
+    },
+    {
+      "id": "960b",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:12.570Z",
+      "month": "Jan"
+    },
+    {
+      "id": "bca7",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:12.708Z",
+      "month": "Jan"
+    },
+    {
+      "id": "2178",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:12.845Z",
+      "month": "Jan"
+    },
+    {
+      "id": "04da",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:12.991Z",
+      "month": "Jan"
+    },
+    {
+      "id": "7ff1",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:14.889Z",
+      "month": "Jan"
+    },
+    {
+      "id": "6ff1",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:15.090Z",
+      "month": "Jan"
+    },
+    {
+      "id": "a10e",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:15.197Z",
+      "month": "Jan"
+    },
+    {
+      "id": "27b7",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:15.332Z",
+      "month": "Jan"
+    },
+    {
+      "id": "af6d",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:15.474Z",
+      "month": "Jan"
+    },
+    {
+      "id": "f920",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:26.036Z",
+      "month": "Jan"
+    },
+    {
+      "id": "9106",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:27.942Z",
+      "month": "Jan"
+    },
+    {
+      "id": "84ee",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:28.083Z",
+      "month": "Jan"
+    },
+    {
+      "id": "7dd7",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:28.231Z",
+      "month": "Jan"
+    },
+    {
+      "id": "1a7b",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:28.371Z",
+      "month": "Jan"
+    },
+    {
+      "id": "732c",
+      "userId": "9",
+      "items": [
+        {
+          "id": "11",
+          "category": "Speakers",
+          "name": "JBL Flip 6",
+          "price": 129,
+          "imageURL": "https://onward.ph/cdn/shop/files/JBLFlip6_Green_Main_2048x.png?v=1720674976",
+          "sales": 1804,
+          "quantity": 1
+        },
+        {
+          "id": "17",
+          "category": "Gamings",
+          "name": "Xbox Series X",
+          "price": 499,
+          "imageURL": "https://expertlaois.ie/wp-content/uploads/2024/01/Xbox-Series-X.jpg",
+          "sales": 1803,
+          "quantity": 1
+        },
+        {
+          "id": "b870",
+          "name": "Nothing Phone (2a) 5G",
+          "price": "21850",
+          "discription": "8 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display The Nothing Phone (2a) redefines smartphone design with its bezel-less display, providing an immersive viewing ...",
+          "imageURL": "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRLtxhyqhKvjv-Zp1AzIb0C4UVdhKlmug5YDEYN9hNeifdBuNQCRcKqpRdEv8rgl39iYo1tNHUJ_ztzjsG74aSJbgpBF9fpAleOGjdB9kzP7p4ylcVdR_E_&usqp=CAE",
+          "category": "mobiles",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "category": "Laptops",
+          "name": "Dell XPS 13",
+          "price": "1500",
+          "imageURL": "https://kievmag.com.ua/image/cache/catalog/00/00/9320/dell-xps-13-plus-9320-kievmag-5-680x630.jpg",
+          "sales": 957,
+          "discription": "dell\n\n",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "category": "Laptops",
+          "name": "Asus ROG Zephyrus",
+          "price": 1799,
+          "imageURL": "https://dlcdnwebimgs.asus.com/gain/775F6122-A7AB-4310-9E5B-F110063FD981/w250",
+          "sales": 703,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25777,
+      "orderDate": "2025-01-08T04:39:28.508Z",
+      "month": "Jan"
     }
   ],
   "randomImage": [
