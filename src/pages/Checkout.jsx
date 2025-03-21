@@ -7,11 +7,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
+// import { useDispatch, useSelector } from "react-redux";
+// import { clearCart } from "../state/cart/cartSlice";
 import { useCart } from "../hooks/useCart";
 
 const Checkout = () => {
   const [userdata, setUserdata] = useState({});
   const { cart, clearCart } = useCart();
+  // const dispatch = useDispatch();
+  // const { cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -51,7 +55,7 @@ const Checkout = () => {
       toast.success('Order placed successfully',
         {
           onClose: () => {
-            clearCart();
+            clearCart()
             navigate("/");
             window.location.reload();
           },

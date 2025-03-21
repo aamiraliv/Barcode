@@ -65,7 +65,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="overflow-hidden h-[160px] md:h-[580px] xl:h-screen relativ">
+      <div className="overflow-hidden h-[160px] md:h-[580px] xl:h-screen relative">
         {randomImage.map((item) => (
           <div
             key={item.id}

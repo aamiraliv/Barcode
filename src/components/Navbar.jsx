@@ -9,8 +9,10 @@ import {
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
+// import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../hooks/useCart";
+// import useFetchProducts from "../hooks/useFetchProducts";
 
 const Navbar = () => {
   const [query, setQuery] = useState("");
@@ -19,6 +21,9 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [logged, setLogged] = useState(false);
   const [userdata, setUserData] = useState();
+  // const [filtered, setFiltered] = useState([]);
+  // const { products } = useFetchProducts("/product");
+  // const { cart } = useSelector((state) => state.cart);
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -38,6 +43,13 @@ const Navbar = () => {
       setLogged(true);
     }
   }, []);
+
+  // useEffect(() => {
+  //   const filteredItems = products.filter((item) =>
+  //     item.name.toLowerCase().includes(query.toLowerCase())
+  //   );
+  //   setFiltered(filteredItems);
+  // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -92,11 +104,11 @@ const Navbar = () => {
           )} */}
 
           <div
-            className={`transition-all duration-1000 ease-in-out ${
-              isSearchOpen ? " w-[100px] md:w-[200px]" : "w-0"
+            className={`relative transition-all duration-1000 ease-in-out ${
+              isSearchOpen ? " w-[100px] md:w-[200px]" : "w-0 "
             } overflow-hidden`}
           >
-            <form onSubmit={handleSearch}>
+            <form className="relative" onSubmit={handleSearch}>
               <input
                 type="text"
                 className="w-full  flex-grow rounded-full px-4 py-1 bg-transparent outline-none border-2 border-black/55"
@@ -104,6 +116,22 @@ const Navbar = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
+              {/* {query && (
+                <ul className="absolute top-10  w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
+                  {filtered.map((item, index) => (
+                    <li
+                      key={index}
+                      onClick={handleSearch}
+                      className="p-2 border-b cursor-pointer hover:bg-gray-100"
+                    >
+                      {item.name}
+                    </li>
+                  ))}
+                  {filtered.length === 0 && (
+                    <li className="p-2 text-gray-500">No results found</li>
+                  )}
+                </ul>
+              )} */}
             </form>
           </div>
 
@@ -139,15 +167,17 @@ const Navbar = () => {
               isOpen ? "block" : "hidden"
             } mt-2 border backdrop-blur-md bg-black/40  md:hidden overflow-hidden`}
           >
-            
-              <div  onClick={()=>{
-                navaigate("/products/All")
-                setIsOpen(false)
-                }} className="flex gap-2 items-center">
-                <ShoppingCartIcon className="h-4 text-white" />
-                <p className="menu-nav-titles">Shop</p>
-              </div>
-            
+            <div
+              onClick={() => {
+                navaigate("/products/All");
+                setIsOpen(false);
+              }}
+              className="flex gap-2 items-center"
+            >
+              <ShoppingCartIcon className="h-4 text-white" />
+              <p className="menu-nav-titles">Shop</p>
+            </div>
+
             <div className="flex gap-2 items-center">
               <ExclamationCircleIcon className="h-4 text-white" />
               <p className="menu-nav-titles">About</p>

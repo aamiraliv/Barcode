@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../../services/api";
 import { useCart } from "../hooks/useCart";
+// import { useSelector } from "react-redux";
 
 const Profile = () => {
   const [userdata, setUserdata] = useState({});
   const [orders, setOrders] = useState([]);
   const { cart } = useCart();
+  // const { cart } = useSelector((state) => state.cart);
   const navigate = useNavigate();
 
   useEffect(() => {

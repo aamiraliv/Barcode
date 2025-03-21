@@ -4,11 +4,35 @@ import {
   PlusIcon,
   XCircleIcon,
 } from "@heroicons/react/24/outline";
+// import { useEffect } from "react";
 import { Link } from "react-router-dom";
+// import {
+//   fetchUserAndCart,
+//   removeFromCart,
+//   syncWithServer,
+//   updateQuantity,
+// } from "../state/cart/cartSlice";
+// import { useDispatch, useSelector } from "react-redux";
 import { useCart } from "../hooks/useCart";
 
 const Cart = () => {
+  // const dispatch = useDispatch();
+  // const { cart, status } = useSelector((state) => state.cart);
   const { cart, removeFromCart, updateQuantity } = useCart();
+
+  // useEffect(() => {
+  //   if (status === "idle") {
+  //     dispatch(fetchUserAndCart());
+  //   }
+  // }, [dispatch, status]);
+  // const handleUpdateQuantity = (id, quantity) => {
+  //   dispatch(updateQuantity(id, quantity));
+  //   dispatch(syncWithServer());
+  // };
+  // const handleRemoveFromCart = (id) => {
+  //   dispatch(removeFromCart(id));
+  //   dispatch(syncWithServer());
+  // };
 
   if (cart.length === 0) {
     return <h2> Cart is empty </h2>;
@@ -47,6 +71,9 @@ const Cart = () => {
                 <div className="flex gap-2 items-center">
                   <button
                     onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                    // onClick={() =>
+                    //   dispatch(handleUpdateQuantity(item.id, item.quantity - 1))
+                    // }
                     disabled={item.quantity <= 1}
                   >
                     <MinusIcon className="h-4 cursor-pointer" />
@@ -54,6 +81,9 @@ const Cart = () => {
                   {item.quantity}
                   <PlusIcon
                     onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                    // onClick={() =>
+                    //   dispatch(handleUpdateQuantity(item.id, item.quantity + 1))
+                    // }
                     className="h-4 cursor-pointer"
                   />
                 </div>
@@ -62,6 +92,7 @@ const Cart = () => {
               <td>
                 <XCircleIcon
                   onClick={() => removeFromCart(item.id)}
+                  // onClick={() => dispatch(handleRemoveFromCart(item.id))}
                   className="h-4 cursor-pointer"
                 />
               </td>
@@ -84,7 +115,7 @@ const Cart = () => {
             <p>₹ {total.toFixed(2)}</p>
           </div>
         </div>
-        <Link to={'/checkout'}>
+        <Link to={"/checkout"}>
           <div className="cursor-pointer flex items-center justify-between bg-red-500 px-3 py-4 rounded-xl">
             <p className="text-white font-semibold">Checkout</p>
             <p className="text-white font-semibold">₹ {total.toFixed(2)}</p>

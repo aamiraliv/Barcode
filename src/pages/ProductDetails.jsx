@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/api";
+// import { useDispatch } from "react-redux";
+// import { addItem } from "../state/cart/cartSlice";
 import { useCart } from "../hooks/useCart";
 
 const ProductDetails = () => {
   const { addToCart } = useCart();
   const [data, setData] = useState({});
+  // const dispatch = useDispatch()
 
   const { id } = useParams();
 
@@ -36,7 +39,7 @@ const ProductDetails = () => {
             <p className="xl:text-start text-stone-700 xl:pl-2 xl:border-l-4 xl:border-l-red-400">₹ {data.price}</p>
             <p className="xl:text-start text-stone-700">Quantity: 1</p>
             <button
-              onClick={() => addToCart(data)} // Add your function to handle the cart logic
+              onClick={addToCart}
               className="font-Poppins w-full border-2 border-red-500/50 text-red-500 rounded-lg p-4 hover:text-white hover:bg-red-500"
             >
               Add To Cart

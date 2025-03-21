@@ -164,7 +164,7 @@ const DisplayProducts = () => {
               image={item.imageURL}
               price={item.price}
               item={item}
-              handleAddToCart={addToCart}
+              handleAddToCart={()=>addToCart(item)}
             />
           ))}
         </div>
