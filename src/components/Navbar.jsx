@@ -8,64 +8,82 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { BiSolidHeartCircle } from "react-icons/bi";
 import { useEffect, useState } from "react";
-// import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useCart } from "../hooks/useCart";
-// import useFetchProducts from "../hooks/useFetchProducts";
+import { getCurrentUser } from "../state/authSlice";
+import { searchProducts } from "../state/productSlice/productSlice";
+
+// const Navbar = () => {
+//   const [query, setQuery] = useState("");
+//   const navaigate = useNavigate();
+//   const [isOpen, setIsOpen] = useState(false);
+//   const [isSearchOpen, setIsSearchOpen] = useState(false);
+//   const [logged, setLogged] = useState(false);
+//   const [userdata, setUserData] = useState();
+//   // const [filtered, setFiltered] = useState([]);
+//   // const { products } = useFetchProducts("/product");
+//   // const { cart } = useSelector((state) => state.cart);
+
+//   // useEffect(() => {
+//   //   const filteredItems = products.filter((item) =>
+//   //     item.name.toLowerCase().includes(query.toLowerCase())
+//   //   );
+//   //   setFiltered(filteredItems);
+//   // }, []);
 
 const Navbar = () => {
-  const [query, setQuery] = useState("");
-  const navaigate = useNavigate();
+  const { cartItems } = useSelector((state) => state.cart);
+  const { loggeduser } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [logged, setLogged] = useState(false);
-  const [userdata, setUserData] = useState();
-  // const [filtered, setFiltered] = useState([]);
-  // const { products } = useFetchProducts("/product");
-  // const { cart } = useSelector((state) => state.cart);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (!storedUser) return;
-    setUserData(storedUser);
-  }, []);
+    dispatch(getCurrentUser());
+  }, [dispatch]);
 
-  const handleuser = () => {
-    navaigate("/user");
-    setIsOpen(false);
+  // console.log(loggeduser);
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
   };
-
-  const { cart } = useCart();
-  useEffect(() => {
-    const loggedUser = JSON.parse(localStorage.getItem("user"));
-    if (loggedUser) {
-      setLogged(true);
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   const filteredItems = products.filter((item) =>
-  //     item.name.toLowerCase().includes(query.toLowerCase())
-  //   );
-  //   setFiltered(filteredItems);
-  // }, []);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (query.trim()) {
-      navaigate(`/products/All?search=${query}`);
-    } else {
-      navaigate("/products/All");
-    }
+  const categories = [
+    "Laptops",
+    "Headphones",
+    "Gamings",
+    "Watches",
+    "Speakers",
+  ];
+
+  const handleuser = () => {
+    navigate("/user");
+    window.scroll(0, 0);
+    setIsOpen(false);
   };
 
-  const toggleSearch = () => {
-    setIsSearchOpen(!isSearchOpen);
+  const handleSearch = (e) => {
+    e.preventDefault();
+
+    // const isCategory = categories.includes(query);
+    const isCategory = categories.find(
+      (cat) => cat.toLowerCase() === query.toLowerCase()
+    );
+
+    dispatch(
+      searchProducts({
+        name: !isCategory ? query : undefined,
+        category: isCategory ? query : undefined,
+      })
+    );
+    navigate(`/products/search`);
   };
 
   return (
@@ -82,27 +100,23 @@ const Navbar = () => {
           </Link>
           <p className="nav-titles">About</p>
           <p className="nav-titles">Contact</p>
+          <Link to={"/wishlist"}>
+            <p className="flex items-center nav-titles">
+              wishlist
+              <BiSolidHeartCircle />
+            </p>
+          </Link>
         </div>
         <div className="flex items-center gap-5">
           <Link to={"/login"}>
             <p
               className={`font-Poppins font-light text-[15px] cursor-pointer hover:text-black/50 ${
                 isSearchOpen ? "" : "mr-[45px]"
-              } ${logged ? "hidden" : ""}`}
+              } ${loggeduser ? "hidden" : ""}`}
             >
               Login
             </p>
           </Link>
-          {/* {isSearchOpen ? (
-            <p className="font-Poppins font-light text-[15px] cursor-pointer hover:text-black/50">
-              login
-            </p>
-          ) : (
-            <p className="font-Poppins font-light text-[15px] cursor-pointer hover:text-black/50 mr-[45px]">
-              login
-            </p>
-          )} */}
-
           <div
             className={`relative transition-all duration-1000 ease-in-out ${
               isSearchOpen ? " w-[100px] md:w-[200px]" : "w-0 "
@@ -117,21 +131,21 @@ const Navbar = () => {
                 onChange={(e) => setQuery(e.target.value)}
               />
               {/* {query && (
-                <ul className="absolute top-10  w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
-                  {filtered.map((item, index) => (
-                    <li
-                      key={index}
-                      onClick={handleSearch}
-                      className="p-2 border-b cursor-pointer hover:bg-gray-100"
-                    >
-                      {item.name}
-                    </li>
-                  ))}
-                  {filtered.length === 0 && (
-                    <li className="p-2 text-gray-500">No results found</li>
-                  )}
-                </ul>
-              )} */}
+                    <ul className="absolute top-10  w-full bg-white shadow-lg rounded-md max-h-48 overflow-auto z-50">
+                      {filtered.map((item, index) => (
+                        <li
+                          key={index}
+                          onClick={handleSearch}
+                          className="p-2 border-b cursor-pointer hover:bg-gray-100"
+                        >
+                          {item.name}
+                        </li>
+                      ))}
+                      {filtered.length === 0 && (
+                        <li className="p-2 text-gray-500">No results found</li>
+                      )}
+                    </ul>
+                  )} */}
             </form>
           </div>
 
@@ -145,11 +159,12 @@ const Navbar = () => {
               <MagnifyingGlassIcon className="h-5" />
             )}
           </button>
+
           <Link to={"/cart"}>
             <ShoppingBagIcon className="h-5 relative" />
           </Link>
           <p className="absolute right-[50px] top-3 rounded-full bg-red-500 text-white font-bold text-[10px] px-1 md:right-[60px]">
-            {cart.length}
+            {cartItems?.length}
           </p>
           <UserIcon
             onClick={handleuser}
@@ -169,8 +184,9 @@ const Navbar = () => {
           >
             <div
               onClick={() => {
-                navaigate("/products/All");
+                navigate("/products/All");
                 setIsOpen(false);
+                // window.location.reload();
               }}
               className="flex gap-2 items-center"
             >
@@ -188,13 +204,20 @@ const Navbar = () => {
               <p className="menu-nav-titles">Contact</p>
             </div>
 
+            <Link to={"/wishlist"}>
+              <p className="flex gap-2 items-center menu-nav-titles text-white">
+                wishlist
+                <BiSolidHeartCircle />
+              </p>
+            </Link>
+
             <div
               onClick={handleuser}
               className="flex gap-2 items-center cursor-pointer"
             >
               <UserIcon className="h-4 text-white" />
-              {userdata ? (
-                <p className="menu-nav-titles">{userdata.name}</p>
+              {loggeduser ? (
+                <p className="menu-nav-titles">{loggeduser}</p>
               ) : (
                 <p className="menu-nav-titles">Profile</p>
               )}
@@ -206,5 +229,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;

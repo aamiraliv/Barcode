@@ -1,14 +1,16 @@
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import api from "../../services/api";
+import { registerUser } from "../state/authSlice";
 
 const Register = () => {
-  const [data, setData] = useState([]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [input, setInput] = useState({
-    id: "",
-    name: "",
+    username: "",
     password: "",
     email: "",
     role: "",
@@ -19,16 +21,7 @@ const Register = () => {
     email: "",
   });
 
-  const navigate = useNavigate();
-  const [isSubmit, setIsSubmit] = useState(false);
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await api.get("/users");
-      setData(response.data);
-    };
-    getData();
-  }, [isSubmit]);
+  console.log(input);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,26 +29,32 @@ const Register = () => {
     setError(validateError);
     if (Object.keys(validateError).length === 0) {
       try {
-        const response = await api.get(`/users?email=${input.email}`);
-        if (response.data.length > 0) {
-          // alert("Email already exists");
-          toast.error("Email already exists");
-        } else {
-          const response = await api.post("/users", input);
-          console.log(response.data);
-          // alert("you are registered successfully");
-          toast.success('you are registered successfully',{
-            onClose:()=>{
-              navigate("/login");
-            }
-          })
-          // navigate("/login");
-          setIsSubmit(!isSubmit);
-        }
-        } catch (error) {
-          console.log(error);
-        }
+        const response = await dispatch(registerUser(input)).unwrap();
+        console.log(response);
+        toast.success("you are registered successfully", {
+          position: "top-center",
+          style: {
+            fontSize: "12px",
+            padding: "6px 12px",
+            background: "white",
+            color: "green",
+            border: "1px solid green",
+          },
+          onClose: () => {
+            navigate("/login");
+          },
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error(error, {
+          position: "top-center",
+          style: {
+            fontSize: "12px",
+            padding: "6px 12px",
+          }
+        });
       }
+    }
   };
 
   const handleChange = (e) => {
@@ -63,21 +62,17 @@ const Register = () => {
     setInput({
       ...input,
       [name]: value,
-      id: String(data.length + 1),
-      role: "user",
-      isBlocked: false,
+      role: "USER",
     });
   };
-
-  console.log(input);
 
   const validate = () => {
     const error = {};
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (!input.name.trim()) {
-      error.name =  'name required';
+    if (!input.username.trim()) {
+      error.name = "name required";
     }
     if (!emailRegex.test(input.email)) {
       error.email = "incorrect email";
@@ -101,10 +96,15 @@ const Register = () => {
               type="text"
               placeholder="Enter your userName"
               onChange={handleChange}
-              name="name"
+              name="username"
               value={input.name}
             />
-            {error.name &&<div className="error"><ExclamationTriangleIcon className="h-4 text-red-600" /> <p >{error.name}</p></div>}
+            {error.name && (
+              <div className="error">
+                <ExclamationTriangleIcon className="h-4 text-red-600" />{" "}
+                <p>{error.name}</p>
+              </div>
+            )}
             <input
               className="inputStyle"
               type="text"
@@ -113,7 +113,12 @@ const Register = () => {
               name="email"
               value={input.email}
             />
-            {error.email && <div className="error"><ExclamationTriangleIcon className="h-4 text-red-600" /> <p>{error.email}</p></div>}
+            {error.email && (
+              <div className="error">
+                <ExclamationTriangleIcon className="h-4 text-red-600" />{" "}
+                <p>{error.email}</p>
+              </div>
+            )}
             <input
               className="inputStyle"
               type="password"
@@ -122,7 +127,12 @@ const Register = () => {
               name="password"
               value={input.password}
             ></input>
-            {error.password && <div className="error"><ExclamationTriangleIcon className="h-4 text-red-600" /> <p>{error.password}</p></div>}
+            {error.password && (
+              <div className="error">
+                <ExclamationTriangleIcon className="h-4 text-red-600" />{" "}
+                <p>{error.password}</p>
+              </div>
+            )}
             <button className="rounded-[50px] bg-red-600 text-white w-full p-2 mt-5 font-semibold">
               Register
             </button>
@@ -134,7 +144,11 @@ const Register = () => {
             </p>
           </div>
           <div className="hidden side-image py-6 pr-6 h-[410px] w-[400px] overflow-hidden xl:block ">
-            <img className="h-full  w-full  rounded-2xl object-cover" src="https://i.pinimg.com/736x/3b/e9/97/3be997cc699312fc4c54fbd0f3c44564.jpg" alt="" />
+            <img
+              className="h-full  w-full  rounded-2xl object-cover"
+              src="https://i.pinimg.com/736x/3b/e9/97/3be997cc699312fc4c54fbd0f3c44564.jpg"
+              alt=""
+            />
           </div>
         </div>
       </form>

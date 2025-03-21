@@ -12,13 +12,16 @@ import ProductEdit from "./admin/page/ProductEdit";
 import ViewUser from "./admin/page/ViewUser";
 import Layout from "./components/Layout";
 import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
+// import Checkout from "./pages/Checkout";
 import DisplayProducts from "./pages/DisplayProducts";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import ProductDetails from "./pages/ProductDetails";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
+import Checkout from "./pages/Checkout";
+import { Toaster } from "react-hot-toast";
+import { Wishlist } from "./pages/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/products/:browseCategory", element: <DisplayProducts /> },
       { path: "/view/:id", element: <ProductDetails /> },
       { path: "/user", element: <Profile /> },
+      { path: "/wishlist", element: <Wishlist />} 
     ],
   },
   {
@@ -82,7 +86,7 @@ const App = () => {
 
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -94,6 +98,7 @@ const App = () => {
         toastClassName="toast-custom"
         bodyClassName="toast-body-custom"
       />
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };
