@@ -4,68 +4,95 @@ import {
   MicrophoneIcon,
   TruckIcon,
 } from "@heroicons/react/24/outline";
+
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import Cards from "../components/Cards";
-import { useCart } from "../hooks/useCart";
-import useFetchProducts from "../hooks/useFetchProducts";
+import randomImage from "../../json/random";
+import { useDispatch, useSelector } from "react-redux";
+import { mostSellingProducts } from "../state/productSlice/productSlice";
+import { useNavigate } from "react-router-dom";
+// import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
+import { addToCart, getCartItems } from "../state/cartSlice/cartSlice";
+import { getWishlistItems } from "../state/wishlistSlice";
 
 const Home = () => {
-  const navaigate = useNavigate();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const { addToCart } = useCart();
-  const { products, isError, isLoading } = useFetchProducts("/product");
-  const {
-    products: Random,
-    isError: isRandomError,
-    isLoading: isRandomLoading,
-  } = useFetchProducts("/randomImage");
-
-  const [randomImage, setRandomImage] = useState([]);
-  const [sortedData, setSortedData] = useState([]);
+  const { userDetails, loggeduser } = useSelector((state) => state.auth);
+  const { mostSoldProducts, mostSoldLoading, mostSoldError } = useSelector(
+    (state) => state.product
+  );
+  const [random, setRandom] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleCatogary = (category) => {
-    navaigate(`/products/${category}`);
-  };
+  const userId = userDetails?.id
 
   useEffect(() => {
-    if (products?.length > 0) {
-      const sorted = [...products]
-        .sort((a, b) => b.sales - a.sales)
-        .slice(0, 10);
-      setSortedData(sorted);
-    }
-    if (Random.length > 0) {
-      setRandomImage(Random);
-    }
+    dispatch(getCartItems({ userId: userDetails?.id }));
+    dispatch(getWishlistItems(userId));
+  }, [dispatch, userDetails?.id, userId]);
 
+  useEffect(() => {
+    dispatch(mostSellingProducts());
+    setRandom(randomImage);
     const interval = setInterval(() => {
-      setCurrentIndex((prevInd) => (prevInd + 1) % randomImage.length);
+      setCurrentIndex((prevInd) => (prevInd + 1) % random.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, [products, Random, randomImage.length]);
+  }, [dispatch, random.length]);
 
-  if (isError) return <div>Error: {isError}</div>;
-  if (isLoading)
+  console.log(userDetails);
+
+  const handleAddToCart = (item) => {
+    if (loggeduser === null) {
+      toast.error("Please login to add to cart", {
+        style: {
+          fontSize: "12px",
+          padding: "6px 12px",
+        },
+      });
+    } else {
+      dispatch(
+        addToCart({
+          userId: userDetails.id,
+          productId: item.id,
+          quantity: 1,
+        })
+      );
+
+      toast.success(`${item.name} added to cart! 🛒`, {
+        style: {
+          fontSize: "12px",
+          padding: "6px 12px",
+          background: "white",
+          color: "green",
+          borderRadius: "50px",
+          border: "1px solid green",
+        },
+      });
+    }
+  };
+
+  if (mostSoldError) return <div>Error: {mostSoldError}</div>;
+  if (mostSoldLoading)
     return (
       <div className="h-[80vh] w-full flex justify-center items-center">
-        <SyncLoader  margin={0} />
+        <SyncLoader margin={0} />
       </div>
     );
 
-  if (isRandomError) return <div>Error For Random Image: {isRandomError}</div>;
-  if (isRandomLoading)
-    return (
-      <div className="h-[80vh] w-full flex justify-center items-center">
-        <SyncLoader  margin={0} />
-      </div>
-    );
+  const handleCatogary = (category) => {
+    navigate("/products/category", { state: { category } });
+    window.location.reload();
+    // navigate(`/products/category`);
+  };
 
   return (
     <div>
-      <div className="overflow-hidden h-[160px] md:h-[580px] xl:h-screen relativ">
+      <div className="overflow-hidden h-[160px] md:h-[580px] xl:h-screen relative">
         {randomImage.map((item) => (
           <div
             key={item.id}
@@ -126,7 +153,7 @@ const Home = () => {
             GADGET
           </h1>
           <button
-            onClick={() => handleCatogary("Watch")}
+            onClick={() => handleCatogary("Watches")}
             className="text-black bg-white py-1 rounded-[50px] z-30"
           >
             Browse
@@ -144,7 +171,7 @@ const Home = () => {
             GAMES
           </h1>
           <button
-            onClick={() => handleCatogary("Gaming")}
+            onClick={() => handleCatogary("Gamings")}
             className="text-red-500 bg-white py-1 rounded-[50px] z-30 "
           >
             Browse
@@ -162,7 +189,7 @@ const Home = () => {
             SPEAKERS
           </h1>
           <button
-            onClick={() => handleCatogary("Speaker")}
+            onClick={() => handleCatogary("Speakers")}
             className="text-red-600 bg-white py-1 rounded-[50px] z-[2]"
           >
             Browse
@@ -180,7 +207,7 @@ const Home = () => {
             LAPTOPS
           </h1>
           <button
-            onClick={() => handleCatogary("Laptop")}
+            onClick={() => handleCatogary("Laptops")}
             className="text-green-500 bg-white py-1 rounded-[50px] z-30"
           >
             Browse
@@ -198,7 +225,7 @@ const Home = () => {
             AUDIO
           </h1>
           <button
-            onClick={() => handleCatogary("Headphone")}
+            onClick={() => handleCatogary("Headphones")}
             className="text-blue-500 bg-white py-1 rounded-[50px] z-20"
           >
             Browse
@@ -253,14 +280,15 @@ const Home = () => {
           Best Selling Products
         </h1>
         <div className="cardContainer grid grid-cols-2 gap-2 mt-4 md:grid-cols-4 xl:grid-cols-5 xl:gap-4">
-          {sortedData.map((item) => (
+          {mostSoldProducts.map((item) => (
             <Cards
               key={item.id}
               name={item.name}
-              image={item.imageURL}
+              image={item.image_url}
               price={item.price}
               item={item}
-              handleAddToCart={addToCart}
+              handleAddToCart={() => handleAddToCart(item)}
+              userId={userDetails?.id}
             />
           ))}
         </div>

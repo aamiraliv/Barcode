@@ -3,64 +3,69 @@ import { faAmazonPay } from "@fortawesome/free-brands-svg-icons/faAmazonPay";
 import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { PencilSquareIcon } from "@heroicons/react/24/outline";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { placeOrder } from "../state/orderSlice/orderSlice";
+import { useEffect } from "react";
+import { getUserDetails } from "../state/authSlice";
 import { toast } from "react-toastify";
-import api from "../../services/api";
-import { useCart } from "../hooks/useCart";
+import { getCartItems } from "../state/cartSlice/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const [userdata, setUserdata] = useState({});
-  const { cart, clearCart } = useCart();
   const navigate = useNavigate();
-
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const dispatch = useDispatch();
+  const { loggeduser, userDetails } = useSelector((state) => state.auth);
+  const { cartItems, cartTotal } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (!storedUser) return;
-    setUserdata(storedUser);
-  }, []);
+    if (loggeduser !== null) {
+      dispatch(getUserDetails(loggeduser));
+    }
+  }, [dispatch, loggeduser]);
 
+  useEffect(() => {
+    if (userDetails?.id) {
+      dispatch(getCartItems({ userId: userDetails.id }));
+    }
+  }, [dispatch, userDetails?.id]);
+
+  console.log(loggeduser);
+  console.log(userDetails);
+
+  const id = userDetails?.id;
+  const orderData = (cartItems ?? []).map((item) => ({
+    productId: item.product?.id,
+    quantity: item.quantity,
+    deliveryStatus: "PENDING",
+  }));
   const handleClearCart = async () => {
-    const currentMonth = new Date().toLocaleString('default', { month: 'short' });
-    try {
-      const newObj = {
-        userId: userdata.id,
-        items: cart,
-        totalAmount: cart.reduce(
-          (sum, item) => sum + item.price * item.quantity,
-          0
-        ),
-        orderDate: new Date().toISOString(),
-        month: currentMonth,
-      };
-
-      const orderResponse = await api.post("/orders", newObj);
-      console.log("order placed successfully", orderResponse.data);
-
-      const updateSalesPromises = cart.map((item) =>
-        api.patch(`/product/${item.id}`, {
-          sales: item.sales ? item.sales + item.quantity : item.quantity,
-        })
-      );
-
-      await Promise.all(updateSalesPromises);
-
-      // clearCart();
-      toast.success('Order placed successfully',
-        {
-          onClose: () => {
-            clearCart();
-            navigate("/");
-            window.location.reload();
-          },
+    if (cartItems?.length === 0) {
+      toast.success("yout cart is empty");
+    } else {
+      try {
+        const response = await dispatch(placeOrder({ userId: id, orderData }));
+        if (response.payload.success) {
+          toast.success("order placed successfully", {
+            position: "top-center",
+            style: {
+              fontSize: "12px",
+              padding: "6px 12px",
+              background: "white",
+              color: "green",
+              border: "1px solid green",
+            },
+            onClose: () => {
+              navigate("/", { replace: true });
+              window.location.reload();
+            },
+          });
+        } else {
+          toast.error("Failed to place order");
         }
-      );
-      // navigate("/");
-      // window.location.reload();
-    } catch (error) {
-      console.log(error);
+      } catch (error) {
+        toast.error("error while placing order");
+        console.log(error);
+      }
     }
   };
 
@@ -72,10 +77,10 @@ const Checkout = () => {
             <h1 className="font-bold text-gray-600">Order Summary</h1>
             <h1 className="text-base text-gray-800">Products</h1>
             <div className="flex overflow-x-scroll border rounded-md p-2 shadow-sm">
-              {cart.map((item) => (
-                <div key={item.id} className="h-[70px] w-[70px]">
+              {cartItems.map((item) => (
+                <div key={item.product.id} className="h-[70px] w-[70px]">
                   <img
-                    src={item.imageURL}
+                    src={item.product.image_url}
                     alt=""
                     className="object-contain w-full h-full rounded-lg "
                   />
@@ -83,12 +88,12 @@ const Checkout = () => {
               ))}
             </div>
             <div className="w-full">
-              {cart.map((item) => (
+              {cartItems.map((item) => (
                 <p
                   className="text-[12px] font-normal text-gray-500"
-                  key={item.id}
+                  key={item.product.id}
                 >
-                  {item.name} ,
+                  {item.product.name} ,
                 </p>
               ))}
             </div>
@@ -171,7 +176,7 @@ const Checkout = () => {
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-700"> Subtotal:</p>
-              <p>₹ {total.toFixed(2)}</p>
+              <p>₹ {cartTotal.toFixed(2)}</p>
             </div>
             <div className="flex items-center justify-between">
               <p className="text-sm text-gray-700"> Shipping:</p>
@@ -183,7 +188,7 @@ const Checkout = () => {
             </div>
             <div className="flex items-center justify-between border-b border-gray-600/70 pb-4">
               <p className="text-sm text-gray-700"> Total:</p>
-              <p>₹ {total.toFixed(2)}</p>
+              <p>₹ {cartTotal.toFixed(2)}</p>
             </div>
           </div>
           <div
@@ -191,7 +196,7 @@ const Checkout = () => {
             className="cursor-pointer flex items-center justify-between bg-black px-3 py-4 rounded-xl"
           >
             <p className="text-white font-semibold">place order</p>
-            <p className="text-white font-semibold">₹ {total.toFixed(2)}</p>
+            <p className="text-white font-semibold">₹ {cartTotal.toFixed(2)}</p>
           </div>
         </div>
       </div>
