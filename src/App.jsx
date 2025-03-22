@@ -22,6 +22,7 @@ import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import { Toaster } from "react-hot-toast";
 import { Wishlist } from "./pages/Wishlist";
+import { AdminLogin } from "./admin/page/AdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
       { path: "/products/:browseCategory", element: <DisplayProducts /> },
       { path: "/view/:id", element: <ProductDetails /> },
       { path: "/user", element: <Profile /> },
-      { path: "/wishlist", element: <Wishlist />} 
+      { path: "/wishlist", element: <Wishlist /> },
     ],
   },
   {
@@ -45,7 +46,10 @@ const router = createBrowserRouter([
     path: "register",
     element: <Register />,
   },
-
+  {
+    path: "adminlogin",
+    element: <AdminLogin />,
+  },
   {
     path: "/admin",
     element: <AdminLayout />,
