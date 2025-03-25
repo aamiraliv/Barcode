@@ -17,6 +17,10 @@ const INITIAL_STATE = {
   searchResults: [],
   errorSearch: null,
   loadingSearch: false,
+
+  image_url: "",
+  uploadError: null,
+  uploadLoading: false,
 };
 
 export const fetchProducts = createAsyncThunk(
@@ -78,6 +82,62 @@ export const searchProducts = createAsyncThunk(
   }
 );
 
+export const addProducts = createAsyncThunk(
+  "products/addProducts",
+  async (data, thunkAPI) => {
+    try {
+      const { data: response } = await api.post("/admin/products", data);
+      thunkAPI.dispatch(fetchProducts());
+      return response;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  "products/deleteProducts",
+  async (productId, thunkAPI) => {
+    try {
+      const { data } = await api.delete(`/admin/products/${productId}`);
+      thunkAPI.dispatch(fetchProducts());
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const updateProduct = createAsyncThunk(
+  "products/updateProduct",
+  async ({ productId, productData }, thunkAPI) => {
+    try {
+      const { data } = await api.put(
+        `/admin/products/${productId}`,
+        productData
+      );
+      thunkAPI.dispatch(fetchProducts());
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.data.message);
+    }
+  }
+);
+
+export const uploadImage = createAsyncThunk(
+  "image/upload",
+  async (file, { rejectWithValue }) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await api.post("/admin/products/upload", formData);
+      return response.data.image_url;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Image upload failed");
+    }
+  }
+);
 // export const getProductsByCategory = createAsyncThunk(
 //   "productsByCategory/getProductsByCategory",
 //   async (category, { rejectWithValue }) => {
@@ -154,6 +214,18 @@ const productSlice = createSlice({
       .addCase(searchProducts.rejected, (state, action) => {
         state.loadingSearch = false;
         state.errorSearch = action.payload;
+      })
+      .addCase(uploadImage.pending, (state) => {
+        state.uploadLoading = true;
+        state.uploadError = null;
+      })
+      .addCase(uploadImage.fulfilled, (state, action) => {
+        state.uploadLoading = false;
+        state.image_url = action.payload;
+      })
+      .addCase(uploadImage.rejected, (state, action) => {
+        state.uploadLoading = false;
+        state.uploadError = action.payload;
       });
   },
 });

@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import api from "../../services/api";
 
 const INITIAL_STATE = {
+  users : [],
+  usersError : null,
+  usersLoading : false,
   user: null,
   userDetails: null,
   loggeduser: null,
@@ -26,14 +29,15 @@ export const registerUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
   "auth/logout",
-  async(_, {rejectWithValue}) => {
+  async (_, { rejectWithValue }) => {
     try {
       await api.post("/auth/logout");
       return true;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }
-  });
+  }
+);
 
 export const loginUser = createAsyncThunk(
   "auth/login",
@@ -52,26 +56,67 @@ export const getCurrentUser = createAsyncThunk(
   "auth/getCurrentUser",
   async (_, thunkAPI) => {
     try {
-      const {data} = await api.get("/auth/current-user");
-
+      const { data } = await api.get("/auth/current-user");
       thunkAPI.dispatch(getUserDetails(data));
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.response?.data?.message || error.message);
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
     }
   }
 );
 
 export const getUserDetails = createAsyncThunk(
   "auth/getUserDetails",
-  async(email, {rejectWithValue}) => {
+  async (email, { rejectWithValue }) => {
     try {
       const response = await api.get(`/auth/user/${email}`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || error.message);
     }
-  });
+  }
+);
+
+
+export const getAllUsers = createAsyncThunk(
+  "products/getAllUsers",
+  async (_, { rejectedWithValue }) => {
+    try {
+      const response = await api.get("/admin/users");
+      return response.data;
+    } catch (error) {
+      return rejectedWithValue(error.message);
+    }
+  }
+);
+
+export const blockUser = createAsyncThunk(
+  "auth/blockUser",
+  async(userId,thunkAPI)=>{
+    try {
+      const response = await api.put(`/admin/users/block/${userId}`);
+      thunkAPI.dispatch(getAllUsers())
+      return response.data;
+    }catch(error){
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+)
+
+export const unBlockUser = createAsyncThunk(
+  "auth/unBlockUser",
+  async(userId,thunkAPI)=>{
+    try {
+      const response = await api.put(`/admin/users/unblock/${userId}`);
+      thunkAPI.dispatch(getAllUsers())
+      return response.data;
+    }catch(error){
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+)
 
 const authSlice = createSlice({
   name: "auth",
@@ -113,7 +158,19 @@ const authSlice = createSlice({
       .addCase(getUserDetails.rejected, (state, action) => {
         state.userDetails = null;
         state.userError = action.payload || "Failed to fetch user details";
-      });
+      })
+      .addCase(getAllUsers.fulfilled, (state ,action)=>{
+        state.users = action.payload;
+        state.usersError = null;
+        state.usersLoading = false;
+      })
+      .addCase(getAllUsers.pending,(state)=>{
+        state.usersLoading = true;
+      })
+      .addCase(getAllUsers.rejected,(state,action)=>{
+        state.usersError = action.payload;
+        state.usersLoading = false;
+      })
   },
 });
 // export const { logout } = authSlice.actions;

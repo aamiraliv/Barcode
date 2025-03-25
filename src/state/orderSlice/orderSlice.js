@@ -3,6 +3,8 @@ import api from "../../../services/api";
 
 const INITIAL_STATE = {
   orders: [],
+  ordersError: null,
+  ordersLoading: false,
   ordersByid: [],
   loadingByid: false,
   status: "idle",
@@ -46,12 +48,58 @@ export const getOrders = createAsyncThunk(
 
 export const cancelOrder = createAsyncThunk(
   "order/cancelOrder",
-  async ({ orderId, productId ,userId }, thunkAPI) => {
+  async ({ orderId, productId, userId }, thunkAPI) => {
     try {
       const response = await api.delete(
         `/orders/${orderId}/items/${productId}`
       );
-      thunkAPI.dispatch(getOrderById(userId))
+      thunkAPI.dispatch(getOrderById(userId));
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateOrderStatus = createAsyncThunk(
+  "order/updateOrderStatus",
+  async ({ orderId, status }, thunkAPI) => {
+    try {
+      const response = await api.put(`/admin/orders/${orderId}`, null, {
+        params: { status: status },
+      });
+      thunkAPI.dispatch(getAllOrders());
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const updateDeliveryStatus = createAsyncThunk(
+  "order/updateDeliveryStatus",
+  async ({ orderId, productId, status }, thunkAPI) => {
+    try {
+      const response = await api.put(
+        `/admin/orders/${orderId}/update-status/${productId}`,
+        null,
+        {
+          params: { status: status },
+        }
+      );
+      thunkAPI.dispatch(getAllOrders());
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getAllOrders = createAsyncThunk(
+  "order/getAllOrders",
+  async (_, thunkAPI) => {
+    try {
+      const response = await api.get("/admin/orders");
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -71,6 +119,18 @@ const orderSlice = createSlice({
       })
       .addCase(getOrderById.pending, (state) => {
         state.loadingByid = true;
+      })
+      .addCase(getAllOrders.fulfilled, (state, action) => {
+        state.orders = action.payload;
+        state.ordersLoading = false;
+        state.ordersError = null;
+      })
+      .addCase(getAllOrders.pending, (state) => {
+        state.ordersLoading = true;
+      })
+      .addCase(getAllOrders.rejected, (state, action) => {
+        state.ordersLoading = false;
+        state.ordersError = action.payload;
       });
   },
 });
