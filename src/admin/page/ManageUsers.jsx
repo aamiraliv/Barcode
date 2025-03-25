@@ -1,37 +1,39 @@
 import { ShieldClose } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Avatar from "react-avatar";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import api from "../../../services/api";
+import { blockUser, getAllUsers, unBlockUser } from "../../state/authSlice";
+import toast from "react-hot-toast";
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
+  const { users } = useSelector((state) => state.auth);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    api
-      .get("/users")
-      .then((response) => {
-        setUsers(response.data);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch users:", error);
-      });
-  }, []);
+    dispatch(getAllUsers());
+  }, [dispatch]);
 
-  const handleBlock = async (id, isBlocked) => {
+  const handleBlock = (id, isBlocked) => {
     try {
-      const response = await api.patch(`/users/${id}`, {
-        isBlocked: !isBlocked,
-      });
-      console.log(response.data);
-      setUsers(
-        users.map((user) =>
-          user.id === id ? { ...user, isBlocked: !isBlocked } : user
-        )
-      );
-      toast.success(isBlocked ? "User Unblocked" : "User Blocked");
+      if (isBlocked) {
+        dispatch(unBlockUser(id));
+        toast.success("User unblocked successfully", {
+          style: {
+            border: "1px solid #ccc",
+            padding: "16px",
+          },
+        });
+      } else {
+        dispatch(blockUser(id));
+        toast.success("User blocked successfully", {
+          style: {
+            border: "1px solid #ccc",
+            padding: "16px",
+          },
+        });
+      }
     } catch (error) {
       console.log(error);
     }
@@ -60,16 +62,16 @@ const ManageUsers = () => {
               </div>
               <div className="relative">
                 <p
-                  onClick={() => navigate(`/admin/users/${user.id}`)}
+                  // onClick={() => navigate(`/admin/users/${user.id}`)}
                   className="capitalize font-semibold hover:underline cursor-pointer"
                 >
-                  {user.name}
+                  {user.username}
                 </p>
                 <p className="text-[13px] text-gray-600">{user.email}</p>
                 <p className="text-[13px] text-gray-600">user Id: {user.id}</p>
                 <p
-                  className={`absolute top-0 right-0 text-[10px] px-2 py-1 rounded-md  font-semibold  ${
-                    user.role === "admin"
+                  className={`absolute top-0 -right-10 text-[10px] px-2 py-1 rounded-md  font-semibold  ${
+                    user.role === "ADMIN"
                       ? "text-green-600 bg-green-300/20"
                       : "text-blue-600 bg-blue-300/20"
                   }`}
@@ -79,12 +81,12 @@ const ManageUsers = () => {
               </div>
             </div>
             <div
-              onClick={() => handleBlock(user.id, user.isBlocked)}
+              onClick={() => handleBlock(user.id, user.blocked)}
               className="bg-red-400/30 px-2 py-1 rounded-md flex items-center cursor-pointer border border-red-600"
             >
               <ShieldClose className="h-4 text-red-600" />
               <p className="text-[12px] text-red-600">
-                {user.isBlocked ? "unblock" : "block"}
+                {user.blocked ? "unblock" : "block"}
               </p>
             </div>
           </div>

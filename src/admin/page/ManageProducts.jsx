@@ -5,40 +5,34 @@ import {
   Trash2Icon,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import {
+  deleteProduct,
+  searchProducts,
+} from "../../state/productSlice/productSlice";
 import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
-import { toast } from "react-toastify";
-import api from "../../../services/api";
-import useFetchProducts from "../../hooks/useFetchProducts";
 
 const ManageProducts = () => {
-  const [category, setCategory] = useState("All");
-  const [data, setData] = useState([]);
-  const [drop, setDrop] = useState(false);
-  const { products, isError, isLoading } = useFetchProducts("/product");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const sendCategory = location.state?.category || "all";
+  const [category, setCategory] = useState(sendCategory);
+  const [items, setItems] = useState([]);
+  const [drop, setDrop] = useState(false);
+
+  const { searchResults, errorSearch, loadingSearch } = useSelector(
+    (state) => state.product
+  );
 
   useEffect(() => {
-    const filteredProducts = products.filter((item) => {
-      if (category === "Headphone") {
-        return item.category === "headphones";
-      } else if (category === "Laptop") {
-        return item.category === "Laptops";
-      } else if (category === "Gaming") {
-        return item.category === "Gamings";
-      } else if (category === "Speaker") {
-        return item.category === "Speakers";
-      } else if (category === "Watch") {
-        return item.category === "Watches";
-      } else if (category === "Mobile") {
-        return item.category === "mobiles";
-      } else if (category === "All") {
-        return item;
-      }
-      return item;
-    });
-    setData(filteredProducts);
-  }, [category, products]);
+    dispatch(searchProducts({ category }));
+  }, [dispatch, category]);
+
+  useEffect(() => {
+    setItems(searchResults);
+  }, [searchResults]);
 
   const handleEdit = (product) => {
     navigate("/admin/productForm", { state: { product } });
@@ -50,20 +44,24 @@ const ManageProducts = () => {
 
   const handleDelete = async (product) => {
     try {
-      api.delete(`/product/${product.id}`);
-      navigate("/admin/products");
-      toast.success("Product deleted successfully!", {
-        onClose: () => {
-          window.location.reload();
-        },
-      });
+      const response = await dispatch(deleteProduct(product.id));
+      if (response?.payload?.success === true) {
+        toast.success("Product deleted successfully");
+        window.location.reload();
+      } else {
+        toast.error(
+          "Failed to delete product or product is in someones wishlist"
+        );
+        window.location.reload();
+      }
     } catch (error) {
+      toast.error("An error occurred while deleting the product");
       console.log(error);
     }
   };
 
-  if (isError) return <div>Error:{isError.message}</div>;
-  if (isLoading)
+  if (errorSearch) return <div>Error:{errorSearch.message}</div>;
+  if (loadingSearch)
     return (
       <div className="h-[80vh] w-full flex justify-center items-center">
         <SyncLoader margin={0} />
@@ -78,7 +76,9 @@ const ManageProducts = () => {
             {" "}
             Manage Products
           </h1>
-          <p className="text-sm text-gray-600">totel products: {data.length}</p>
+          <p className="text-sm text-gray-600">
+            totel products: {items.length}
+          </p>
         </div>
         <div className="flex gap-2">
           <div className="relative">
@@ -94,9 +94,7 @@ const ManageProducts = () => {
 
             <div
               className={`transition-all duration-[1s] absolute grid grid-cols-1 gap-1 left-[-18px] w-40 bg-white p-2 rounded-lg shadow-lg ${
-                drop
-                  ? "scale-y-100 opacity-100 "
-                  : "scale-y-0 opacity-0 "
+                drop ? "scale-y-100 opacity-100 " : "scale-y-0 opacity-0 "
               } `}
             >
               <button
@@ -107,15 +105,6 @@ const ManageProducts = () => {
                 className="w-full text-center text-sm text-white bg-[#11212D] rounded-lg p-1"
               >
                 All
-              </button>
-              <button
-                onClick={() => {
-                  setCategory("Mobile");
-                  setDrop(false);
-                }}
-                className="w-full text-center text-sm text-white bg-[#11212D] rounded-lg p-1"
-              >
-                Mobiles
               </button>
               <button
                 onClick={() => {
@@ -200,7 +189,7 @@ const ManageProducts = () => {
             </tr>
           </thead>
           <tbody className="rounded-lg">
-            {data.map((product) => (
+            {items.map((product) => (
               <tr
                 key={product._id}
                 className=" hover:bg-gray-50 border-spacing-y-4 border-b-8 border-[#CCD0CF]/40 rounded-lg h-28"
@@ -209,7 +198,7 @@ const ManageProducts = () => {
                 <td className="text-center  px-1 py-4">{product.category}</td>
                 <td className="text-center  px-1 py-4 hidden xl:block">
                   <img
-                    src={product.imageURL}
+                    src={product.image_url}
                     alt=""
                     className="h-20 w-full object-contain"
                   />

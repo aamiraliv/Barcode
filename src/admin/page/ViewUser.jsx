@@ -1,29 +1,38 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../../services/api";
+import { useDispatch } from "react-redux";
+import { getOrderById } from "../../state/orderSlice/orderSlice";
+import { getUserDetails } from "../../state/authSlice";
 
 const ViewUser = () => {
+  const dispatch = useDispatch();
   const { id } = useParams();
-  const [orders, setOrders] = useState([]);
-  const [user, setUser] = useState({});
+  
+
+
+  useEffect(()=>{
+    dispatch(getOrderById(id))
+    dispatch(getUserDetails(id))
+  },[])
 
   
-  useEffect(() => {
-    api
-      .get(`/users/${id}`)
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => console.log("Failed to fetch user:", error));
+  // useEffect(() => {
+  //   api
+  //     .get(`/users/${id}`)
+  //     .then((response) => {
+  //       setUser(response.data);
+  //     })
+  //     .catch((error) => console.log("Failed to fetch user:", error));
 
-    api.get(`/orders`).then((response) => {
-      const userOrders = response.data.filter(
-        (item) => Number(item.userId) === Number(id)
-      );
-      setOrders(userOrders);
-    });
-    console.log(user);
-  }, [id, orders,user]);
+  //   api.get(`/orders`).then((response) => {
+  //     const userOrders = response.data.filter(
+  //       (item) => Number(item.userId) === Number(id)
+  //     );
+  //     setOrders(userOrders);
+  //   });
+  //   console.log(user);
+  // }, [id, orders,user]);
   
   return (
     <div>

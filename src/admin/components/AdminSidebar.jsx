@@ -1,12 +1,30 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { logoutUser } from "../../state/authSlice";
 
+// eslint-disable-next-line react/prop-types
 const AdminSidebar = ({ isOpen }) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  const handleLogout = () => {
-    localStorage.clear();
+  const handleLogout = async () => {
+    try {
+      const response = await dispatch(logoutUser());
+      console.log("logout status :", response);
+    } catch (error) {
+      console.log("Error logging out:", error);
+    }
+
     toast.info("Logged out successfully", {
+      position: "top-center",
+      style: {
+        fontSize: "12px",
+        padding: "6px 12px",
+        background: "white",
+        color: "mediumblue",
+        border: "1px solid mediumblue",
+      },
       onClose: () => {
         navigate("/");
         window.location.reload();

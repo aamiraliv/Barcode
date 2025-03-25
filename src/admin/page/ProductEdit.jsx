@@ -1,9 +1,15 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import api from "../../../services/api";
+import { useDispatch } from "react-redux";
+import {
+  addProducts,
+  updateProduct,
+} from "../../state/productSlice/productSlice";
+import ImageUpload from "../components/ImageUpload";
 
 const ProductForm = () => {
+  const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const { product: productData } = location.state || {};
@@ -11,10 +17,14 @@ const ProductForm = () => {
   const [product, setProduct] = useState({
     name: "",
     price: "",
-    discription: "",
-    imageURL: "",
+    description: "",
+    image_url: "",
     category: "",
   });
+
+  const handleImageUpload = (imageUrl) => {
+    setProduct({ ...product, image_url: imageUrl });
+  };
 
   useEffect(() => {
     if (productData) {
@@ -27,22 +37,59 @@ const ProductForm = () => {
 
     try {
       if (productData) {
-        await api.patch(`/product/${productData.id}`, product);
-        toast.success("Product updated successfully!", {
-          onClose: () => {
-            navigate("/admin/products");
-          },
-        });
+        const response = await dispatch(
+          updateProduct({ productId: productData?.id, productData: product })
+        );
+        if (response.payload.success === true) {
+          toast.success("Product updated successfully", {
+            position: "top-center",
+            style: {
+              fontSize: "12px",
+              padding: "6px 12px",
+              background: "white",
+              color: "green",
+            },
+            onClose: () => {
+              navigate("/admin/products");
+            },
+          });
+        } else {
+          toast.error("Failed to update product", {
+            position: "top-center",
+            style: {
+              fontSize: "12px",
+              padding: "6px 12px",
+              background: "white",
+              color: "red",
+            },
+          });
+        }
       } else {
-        // const newProductId = uuidv4();
-
-        // await api.post("/product", { ...product, id: newProductId });
-        await api.post("/product", product);
-        toast.success("Product added successfully!", {
-          onClose: () => {
-            navigate("/admin/products");
-          },
-        });
+        const response = await dispatch(addProducts(product));
+        if (response.payload.success === true) {
+          toast.success("Product added successfully", {
+            position: "top-center",
+            style: {
+              fontSize: "12px",
+              padding: "6px 12px",
+              background: "white",
+              color: "green",
+            },
+            onClose: () => {
+              navigate("/admin/products");
+            },
+          });
+        } else {
+          toast.error("Failed to add product", {
+            position: "top-center",
+            style: {
+              fontSize: "12px",
+              padding: "6px 12px",
+              background: "white",
+              color: "red",
+            },
+          });
+        }
       }
     } catch (error) {
       console.error("Error submitting product:", error);
@@ -83,27 +130,25 @@ const ProductForm = () => {
               name="discription"
               placeholder=" Enter the product discription"
               className="xl:col-span-2 min-h-20 w-full p-2 rounded-lg border border-gray-300 outline-none"
-              value={product.discription}
+              value={product.description}
               onChange={(e) =>
-                setProduct({ ...product, discription: e.target.value })
+                setProduct({ ...product, description: e.target.value })
               }
               required
             />
+            <div className="row-span-2">
+              <ImageUpload onUpload={handleImageUpload}/>
+            </div>
+
             <div className="grid grid-cols-1 gap-1">
               <input
                 type="text"
                 name="imageURL"
-                placeholder="Enter the product image Link"
+                placeholder="product image Link"
                 className="w-full p-2 rounded-lg border border-gray-300 outline-none"
-                value={product.imageURL}
-                onChange={(e) =>
-                  setProduct({ ...product, imageURL: e.target.value })
-                }
-                required
+                value={product.image_url}
+                readOnly
               />
-              <p className="text-[10px] text-gray-600">
-                *Enter the Quality Image address ( link )
-              </p>
             </div>
             <div className="grid grid-cols-1 gap-1">
               <input
@@ -118,7 +163,7 @@ const ProductForm = () => {
                 required
               />
               <p className="text-[10px] text-gray-600">
-                *(headphones,mobiles,Speakers,Watches,Laptops,Gamings)
+                *(Headphones,Speakers,Watches,Laptops,Gamings)
               </p>
             </div>
 

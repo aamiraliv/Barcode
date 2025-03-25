@@ -6,9 +6,24 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import CountUp from "react-countup";
+import { useDispatch, useSelector } from "react-redux";
+// import {
+//   Area,
+//   AreaChart,
+//   Bar,
+//   BarChart,
+//   ResponsiveContainer,
+//   Tooltip,
+//   XAxis,
+//   YAxis,
+// } from "recharts";
+import { getAllUsers } from "../../state/authSlice";
 import {
-  Area,
-  AreaChart,
+  fetchProducts,
+  mostSellingProducts,
+} from "../../state/productSlice/productSlice";
+import { getAllOrders } from "../../state/orderSlice/orderSlice";
+import {
   Bar,
   BarChart,
   ResponsiveContainer,
@@ -16,60 +31,62 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import api from "../../../services/api";
-import useFetchProducts from "../../hooks/useFetchProducts";
 
 const AdminDashboard = () => {
-  const [users, setUsers] = useState([]);
-  const [orders, setOrders] = useState([]);
   const [topProducts, setTopProducts] = useState([]);
-  const { products } = useFetchProducts("/product");
-  const data = [];
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.auth);
+  const { products, mostSoldProducts } = useSelector((state) => state.product);
+  const { orders } = useSelector((state) => state.order);
+
   useEffect(() => {
-    api
-      .get(`/users`)
-      .then((response) => setUsers(response.data))
-      .catch((error) => console.log("Failed to fetch users:", error));
+    dispatch(mostSellingProducts());
+    dispatch(getAllUsers());
+    dispatch(fetchProducts());
+    dispatch(getAllOrders());
+  }, [dispatch]);
 
-    api
-      .get(`/orders`)
-      .then((response) => setOrders(response.data))
-      .catch((error) => console.log("Failed to fetch orders:", error));
+  console.log(users);
+  console.log(products);
+  console.log(orders);
 
-    if (products?.length > 0) {
-      const sorted = [...products]
+  useEffect(() => {
+    if (mostSoldProducts?.length > 0) {
+      const sorted = [...mostSoldProducts]
         .sort((a, b) => b.sales - a.sales)
         .slice(0, 5);
       setTopProducts(sorted);
     }
-  }, [products]);
+  }, [mostSoldProducts, mostSoldProducts?.length]);
 
-  orders.forEach((order) => {
-    order.items.forEach((item) => {
-      const existing = data.find((d) => d.month === order.month);
+  // orders.forEach((order) => {
+  //   order.items.forEach((item) => {
+  //     const existing = data.find((d) => d.month === order.month);
 
-      if (existing) {
-        existing[item.category] =
-          (existing[item.category] || 0) + order.totalAmount;
-        existing.totalAmount = (existing.totalAmount || 0) + order.totalAmount;
-      } else {
-        const newEntry = { month: order.month, totalAmount: order.totalAmount };
-        newEntry[item.category] = order.totalAmount;
-        data.push(newEntry);
-      }
-    });
-  });
+  //     if (existing) {
+  //       existing[item.category] =
+  //         (existing[item.category] || 0) + order.totalAmount;
+  //       existing.totalAmount = (existing.totalAmount || 0) + order.totalAmount;
+  //     } else {
+  //       const newEntry = { month: order.month, totalAmount: order.totalAmount };
+  //       newEntry[item.category] = order.totalAmount;
+  //       data.push(newEntry);
+  //     }
+  //   });
+  // });
 
   const length = orders.map((order) => {
-    return order.items.length;
+    return order.orderItems.length;
   });
   const totalOrder = length.reduce((a, b) => a + b, 0);
 
-  const totalSales = orders.map((order) => {
-    return order.totalAmount;
-  });
-
-  const totalAmount = totalSales.reduce((a, b) => a + b, 0);
+  const totalSales = orders.reduce((total, order) => {
+    const orderTotal = order.orderItems.reduce(
+      (sum, item) => sum + item.quantity * item.productResponse.price,
+      0
+    );
+    return total + orderTotal;
+  }, 0);
 
   return (
     <div className="bg-slate-200/40 p-4 rounded-lg ">
@@ -113,7 +130,7 @@ const AdminDashboard = () => {
           </div>
           <div>
             <p className="font-semibold text-2xl">
-              <CountUp start={0} end={totalAmount} duration={2} />+
+              <CountUp start={0} end={totalSales} duration={2} />+
             </p>
             <p className="text-sm text-gray-700 capitalize">Total sales</p>
           </div>
@@ -121,18 +138,27 @@ const AdminDashboard = () => {
       </div>
       <div className="mt-4 grid grid-cols-1 gap-4 xl:grid-cols-3">
         <div className="bg-white p-4 rounded-sm shadow xl:col-span-2 h-[400px] w-full border border-[#006350] bg-[#006350]/10">
-          <h1 className="text-xl font-semibold capitalize text-center text-[#006350]">Sales chart</h1>
-          <ResponsiveContainer width="100%" height="100%">
+          <h1 className="text-xl font-semibold capitalize text-center text-[#006350]">
+            Sales chart
+          </h1>
+          {/* <ResponsiveContainer width="100%" height="100%">
             <AreaChart
               data={data}
               margin={{ top: 20, right: 30, left: 0, bottom: 10 }}
             >
-              <XAxis dataKey="month" tickLine={false} tick={{ fill: "#006350", fontSize: 12 }}/>
-              <YAxis tickLine={false} tick={{ fill: "#006350", fontSize: 12 }}/>
-              <Tooltip />
+              <XAxis
+                dataKey="month"
+                tickLine={false}
+                tick={{ fill: "#006350", fontSize: 12 }}
+              />
+              <YAxis
+                tickLine={false}
+                tick={{ fill: "#006350", fontSize: 12 }}
+              />
+              <Tooltip /> */}
 
-              {/* Category-wise Areas */}
-              <Area
+          {/* Category-wise Areas */}
+          {/* <Area
                 type="monotone"
                 dataKey="Laptops"
                 stroke="#5e81ff"
@@ -161,18 +187,18 @@ const AdminDashboard = () => {
                 dataKey="mobiles"
                 stroke="#FF5733"
                 fill="#FF5733"
-              />
+              /> */}
 
-              {/* Total Amount Area */}
-              <Area
+          {/* Total Amount Area */}
+          {/* <Area
                 type="monotone"
                 dataKey="totalAmount"
                 stroke="#ff6817"
                 fill="#ff6817"
                 fillOpacity={0.3}
-              />
-            </AreaChart>
-          </ResponsiveContainer>
+              /> */}
+          {/* </AreaChart>
+          </ResponsiveContainer> */}
         </div>
         <div className="bg-white p-4 rounded-sm shadow h-[400px] border border-[#7db81f] bg-[#7db81f]/10">
           <h1 className="text-xl font-semibold capitalize text-center text-[#3d6300]">
