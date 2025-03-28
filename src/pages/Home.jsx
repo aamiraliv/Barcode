@@ -21,14 +21,16 @@ const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { userDetails, loggeduser } = useSelector((state) => state.auth);
+  const { userDetails, loggeduser, isAuth, token } = useSelector(
+    (state) => state.auth
+  );
   const { mostSoldProducts, mostSoldLoading, mostSoldError } = useSelector(
     (state) => state.product
   );
   const [random, setRandom] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const userId = userDetails?.id
+  const userId = userDetails?.id;
 
   useEffect(() => {
     dispatch(getCartItems({ userId: userDetails?.id }));
@@ -43,8 +45,6 @@ const Home = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [dispatch, random.length]);
-
-  console.log(userDetails);
 
   const handleAddToCart = (item) => {
     if (loggeduser === null) {

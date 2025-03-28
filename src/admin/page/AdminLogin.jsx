@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { getCurrentUser, loginUser } from "../../state/authSlice";
+import { adminLogin, getCurrentUser } from "../../state/authSlice";
 
 export const AdminLogin = () => {
   const dispatch = useDispatch();
@@ -33,10 +33,10 @@ export const AdminLogin = () => {
       return;
     }
     try {
-      const response = await dispatch(loginUser(detail));
+      const response = await dispatch(adminLogin(detail));
       console.log("redux response: ", response);
 
-      if (response.type === "auth/login/rejected") {
+      if (response.type === "auth/Adminlogin/rejected") {
         throw new Error(response.payload);
       }
 
@@ -57,7 +57,7 @@ export const AdminLogin = () => {
           border: "1px solid green",
         },
         onClose: () => {
-          navigate("/", { replace: true });
+          navigate("/admin", { replace: true });
           window.location.reload();
         },
       });

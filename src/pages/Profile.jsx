@@ -188,9 +188,9 @@ const Profile = () => {
                   className={`text-[12px] ${
                     item.deliveryStatus === "Pending"
                       ? "text-blue-500"
-                      : order.deliveryStatus === "Shipped"
+                      : item.deliveryStatus === "Shipped"
                       ? "text-yellow-500"
-                      : order.deliveryStatus === "Delivered"
+                      : item.deliveryStatus === "Delivered"
                       ? "text-green-500"
                       : ""
                   } p-2 text-center`}
@@ -206,7 +206,7 @@ const Profile = () => {
                 {hoveredProduct === item.productResponse.id && (
                   <button
                     onClick={() => setPopupOpen(true)}
-                    className="absolute top-4 right-[135px] px-9 py-2 text-white border bg-red-500 border-white rounded-lg font-semibold uppercase transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-md active:scale-95"
+                    className="absolute top-4 right-[140px] px-9 py-2 text-white border bg-red-500 border-white rounded-lg font-semibold uppercase transition-all duration-300 hover:bg-red-500 hover:text-white hover:shadow-md active:scale-95"
                   >
                     Cancel
                   </button>

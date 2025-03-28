@@ -2,23 +2,24 @@ import { ShieldClose } from "lucide-react";
 import { useEffect } from "react";
 import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { blockUser, getAllUsers, unBlockUser } from "../../state/authSlice";
 import toast from "react-hot-toast";
 
 const ManageUsers = () => {
   const { users } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
 
-  const handleBlock = (id, isBlocked) => {
+  const handleBlock = async (id, isBlocked) => {
     try {
       if (isBlocked) {
-        dispatch(unBlockUser(id));
+        const response = await dispatch(unBlockUser(id));
+        if (response.error) {
+          throw new Error(response.error.message);
+        }
         toast.success("User unblocked successfully", {
           style: {
             border: "1px solid #ccc",
@@ -26,7 +27,10 @@ const ManageUsers = () => {
           },
         });
       } else {
-        dispatch(blockUser(id));
+        const response = await dispatch(blockUser(id));
+        if (response.error) {
+          throw new Error(response.error.message);
+        }
         toast.success("User blocked successfully", {
           style: {
             border: "1px solid #ccc",
