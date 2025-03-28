@@ -52,7 +52,7 @@ const ManageProducts = () => {
         toast.error(
           "Failed to delete product or product is in someones wishlist"
         );
-        window.location.reload();
+        // window.location.reload();
       }
     } catch (error) {
       toast.error("An error occurred while deleting the product");

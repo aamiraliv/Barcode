@@ -24,6 +24,9 @@ import { Toaster } from "react-hot-toast";
 import { Wishlist } from "./pages/Wishlist";
 import { AdminLogin } from "./admin/page/AdminLogin";
 
+import UnauthorizedPage from "./admin/page/UnauthorizedPage";
+import AdminProtectedRoute from "./utils/AdminProtectedRoute ";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +42,10 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: "/unauthorized",
+    element: <UnauthorizedPage />,
+  },
+  {
     path: "login",
     element: <Login />,
   },
@@ -52,31 +59,37 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <AdminLayout />,
+    element: <AdminProtectedRoute />,
     children: [
       {
-        path: "/admin",
-        element: <AdminDashboard />,
-      },
-      {
-        path: "/admin/products",
-        element: <ManageProducts />,
-      },
-      {
-        path: "/admin/orders",
-        element: <ManageOrders />,
-      },
-      {
-        path: "/admin/users",
-        element: <ManageUsers />,
-      },
-      {
-        path: "/admin/productForm",
-        element: <ProductEdit />,
-      },
-      {
-        path: "/admin/users/:id",
-        element: <ViewUser />,
+        path: "",
+        element: <AdminLayout />,
+        children: [
+          {
+            path: "",
+            element: <AdminDashboard />,
+          },
+          {
+            path: "products",
+            element: <ManageProducts />,
+          },
+          {
+            path: "orders",
+            element: <ManageOrders />,
+          },
+          {
+            path: "users",
+            element: <ManageUsers />,
+          },
+          {
+            path: "productForm",
+            element: <ProductEdit />,
+          },
+          {
+            path: "users/:id",
+            element: <ViewUser />,
+          },
+        ],
       },
     ],
   },

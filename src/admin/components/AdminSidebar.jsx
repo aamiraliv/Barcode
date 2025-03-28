@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { logoutUser } from "../../state/authSlice";
+import { persistor } from "../../state/store";
 
 // eslint-disable-next-line react/prop-types
 const AdminSidebar = ({ isOpen }) => {
@@ -15,7 +16,6 @@ const AdminSidebar = ({ isOpen }) => {
     } catch (error) {
       console.log("Error logging out:", error);
     }
-
     toast.info("Logged out successfully", {
       position: "top-center",
       style: {
@@ -26,7 +26,8 @@ const AdminSidebar = ({ isOpen }) => {
         border: "1px solid mediumblue",
       },
       onClose: () => {
-        navigate("/");
+        navigate("/adminlogin");
+        persistor.purge();
         window.location.reload();
       },
     });
