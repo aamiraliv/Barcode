@@ -26,6 +26,7 @@ import { AdminLogin } from "./admin/page/AdminLogin";
 
 import UnauthorizedPage from "./admin/page/UnauthorizedPage";
 import AdminProtectedRoute from "./utils/AdminProtectedRoute ";
+import useAutoRefreshToken from "./hooks/useAutoRefreshToken";
 
 const router = createBrowserRouter([
   {
@@ -96,6 +97,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  useAutoRefreshToken();
   // return <RouterProvider router={router} />;
   return (
     <>

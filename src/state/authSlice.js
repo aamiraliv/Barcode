@@ -78,7 +78,10 @@ export const refreshAccessToken = createAsyncThunk(
   "auth/refreshAccessToken",
   async (_, { rejectWithValue }) => {
     try {
+      console.log("🔄 Refreshing access token...");
       const response = await api.post("/auth/refresh-token");
+      console.log("🔄 Access token refreshed successfully!")
+      console.log("New access token:", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response?.data || "Refresh failed");
@@ -161,6 +164,7 @@ const authSlice = createSlice({
     builder
       .addCase(loginUser.fulfilled, (state, action) => {
         state.isAuth = true;
+        state.isAdmin = false;
         state.token = action.payload.accessToken;
         state.error = null;
         state.loading = false;
